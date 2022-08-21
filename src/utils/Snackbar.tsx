@@ -8,14 +8,13 @@ const Snackbar = () => {
     var timeout = setTimeout(() => {
         closeSnackbar();
     }, state.snackbarDuration);
-    
+
     useEffect(() => {
         if (state.openSnackbar === true) {
             clearTimeout(timeout);
         }
     }, [state.openSnackbar]);
-
-    return state?.openSnackbar ? (
+    return (
         <div
             className={styles.box}
             style={{ background: { error: "#cf6679", success: "green", info: "blue" }[state?.snackbarType] }}
@@ -25,8 +24,6 @@ const Snackbar = () => {
                 <MdClose style={{ height: 24, width: 24 }} />
             </button>
         </div>
-    ) : (
-        <></>
     );
 };
 

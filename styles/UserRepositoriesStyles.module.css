@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px 2%;
+}
+.card {
+    width: 49%;
+    min-height: 200px;
+    padding: 20px;  
+    border: 2px solid white;
+    border-radius: 8px;
+}
+.card:hover{
+    background-color: #388bfd26;
+}
+.chip{
+    background-color: #58a6ff;
+    margin-right: 10px;
+    padding: 5px;
+    border-radius: 5px;
+}

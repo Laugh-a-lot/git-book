@@ -7,8 +7,6 @@ type Props = {
     children: React.ReactNode;
 };
 const PrivateRoute = ({ children }: Props) => {
-    const [userName, setUserName] = useState("");
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const router = useRouter();
     const { state} = useContext(MyCtx);
 
@@ -16,13 +14,12 @@ const PrivateRoute = ({ children }: Props) => {
         if (!state?.isLoggedIn && router.asPath !== "/log-username") {
             const getUserName = localStorage.getItem("userName");
             const getIsLoggedIn = localStorage.getItem("isLoggedIn");
-            setUserName(getUserName ? getUserName : "");
-            setIsLoggedIn(getIsLoggedIn === "true");
             if (!getUserName || !getIsLoggedIn) {
                 router.push("/log-username");
             }
         }
     }, []);
+    console.log(state);
     if (!state?.isLoggedIn && router.asPath !== "/log-username") return <Loader />;
     return <>{children}</>;
 };

@@ -7,7 +7,6 @@
     right: 0;
     display: flex;
     justify-content: space-between;
-    margin: 16px;
 }
 .text {
     font-size: normal;

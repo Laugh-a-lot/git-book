@@ -1,11 +1,11 @@
-import React from "react";
+import { Octokit } from "octokit";
+const octokit = new Octokit({
+    auth: process.env.NEXT_PUBLIC_PERSONAL_ACCESS_TOKEN,
+});
 
 const Fetcher = async (path: string, method: string = "GET", configs: object = {}) => {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_GITHUB_API + path}`, { method, ...configs })
-        // .then((response) => { response.json(); return { data: response.body,status: response.status} })
-        // .catch((err) => err.json());
-    const data = await response.json();
-    const { status } = response;
+    const response = await octokit.request(`${method} /${path}`, {...configs});
+    const { status, data } = response;
     return { data, status };
 };
 
