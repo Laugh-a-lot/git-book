@@ -1,0 +1,27 @@
+.box {
+    position: absolute;
+    width: 350px;
+    min-height: 75px;
+    padding: 20px;
+    border-radius: 8px;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    margin: 16px;
+}
+.text {
+    font-size: normal;
+    margin: 0;
+}
+.close {
+    border-radius: 50%;
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+    height: 35px;
+    width: 35px;
+    background: none;
+}
+.close:hover {
+    background-color: rgba(128, 128, 128, 0.105);
+}
