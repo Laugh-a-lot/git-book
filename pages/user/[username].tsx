@@ -26,7 +26,7 @@ type Props = {
     };
 };
 
-const userDetails = ({ profileDetails, repoDetails }: Props) => {
+const UserDetails = ({ profileDetails, repoDetails }: Props) => {
     const [reposList, setRepoList] = useState(repoDetails.data);
     const [loading, setLoading] = useState(false);
     const { state, showSnackbar } = useContext(MyCtx);
@@ -65,4 +65,4 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         props: { profileDetails, repoDetails }, // will be passed to the page component as props
     };
 };
-export default userDetails;
+export default UserDetails;
