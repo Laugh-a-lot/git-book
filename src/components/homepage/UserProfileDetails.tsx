@@ -49,16 +49,16 @@ function UserProfileDetails({ profileDetails }: Props) {
                 {data.twitter_username && (
                     <p>
                         Twitter:
-                        <a href={"https://twitter.com/" + data.twitter_username} target="_blank">
-                            https://twitter.com/{data.twitter_username}
+                        <a href={"https://twitter.com/" + data.twitter_username} target="_blank" rel="noreferrer">
+                            &nbsp;&nbsp; https://twitter.com/{data.twitter_username}
                         </a>
                     </p>
                 )}
             </div>
             <button className={styles.logoutBtn} onClick={handleLogoutUser}>
-                Check Another User
+                Check Another User  
             </button>
-            <a href={data.html_url} className={styles.link}>
+            <a href={data.html_url} className={styles.link} target="_blank" rel="noreferrer">
                 <BsLink /> {data.html_url}
             </a>
         </div>

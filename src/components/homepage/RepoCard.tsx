@@ -16,8 +16,8 @@ function RepoCard({ data }: Props) {
             <h3>{data.name}</h3>
             <p>{data.description}</p>
             <div>
-                {data.topics?.map((topic) => (
-                    <span className={styles.chip}>{topic}</span>
+                {data.topics?.map((topic, idx) => (
+                    <span className={styles.chip} key={idx}>{topic}</span>
                 ))}
             </div>
         </div>

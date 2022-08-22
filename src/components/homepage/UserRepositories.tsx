@@ -1,9 +1,6 @@
-import React, { useState, useContext } from "react";
-import Pagination from "../homepage/Pagination";
+import React from "react";
 import RepoCard from "./RepoCard";
 import styles from "../../../styles/UserRepositoriesStyles.module.css";
-import Fetcher from "../../utils/Fetcher";
-import { MyCtx } from "../../contexts";
 
 type Props = {
     repoList: {
@@ -17,8 +14,8 @@ type Props = {
 function UsersRepositories({ repoList }: Props) {
     return (
         <div className={styles.container}>
-            {repoList?.map((repo) => (
-                <RepoCard data={repo} />
+            {repoList?.map((repo, idx) => (
+                <RepoCard data={repo} key={idx} />
             ))}
         </div>
     );
