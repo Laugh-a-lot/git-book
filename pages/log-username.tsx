@@ -6,7 +6,7 @@ import Fetcher from "../src/utils/Fetcher";
 import Loader from "../src/utils/Loader";
 import styles from "../styles/logUsernameStyles.module.css";
 
-const logUsername: NextPage = () => {
+const LogUsername: NextPage = () => {
     const [userName, setUserName] = useState("");
     const [loading, setLoading] = useState(false);
     const router = useRouter();
@@ -48,4 +48,4 @@ const logUsername: NextPage = () => {
     );
 };
 
-export default logUsername;
+export default LogUsername;
