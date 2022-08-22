@@ -5,8 +5,9 @@ import Pagination from "../../src/components/homepage/Pagination";
 import Fetcher from "../../src/utils/Fetcher";
 import { GetServerSideProps } from "next";
 import { MyCtx } from "../../src/contexts";
+import Loader from "../../src/utils/Loader";
 
-const totalReposPerPage = 10;
+const totalReposPerPage = 6;
 
 type Props = {
     profileDetails: {
@@ -27,16 +28,28 @@ type Props = {
 
 const userDetails = ({ profileDetails, repoDetails }: Props) => {
     const [reposList, setRepoList] = useState(repoDetails.data);
-    const { state } = useContext(MyCtx);
+    const [loading, setLoading] = useState(false);
+    const { state, showSnackbar } = useContext(MyCtx);
     const handlePageChange = async (page: Number) => {
+        setLoading(true);
         const repoDetails = await Fetcher(`users/${state?.userName}/repos`, "GET", { per_page: totalReposPerPage, page });
+        if (repoDetails.status === 200) {
+            showSnackbar("success", "Page Changed Successfully!")
+        }
         setRepoList(repoDetails?.data);
-        console.log(repoDetails.data);
+        setLoading(false);
     };
     return (
         <>
             <UserProfileDetails profileDetails={profileDetails} />
-            <UserRepositories repoList={reposList} />
+            {loading ? (
+                <div style={{ display: "flex", justifyContent: "center" }}>
+                    <Loader />
+                    &nbsp;&nbsp; Loading...{" "}
+                </div>
+            ) : (
+                <UserRepositories repoList={reposList} />
+            )}
             <Pagination
                 handlePageChange={handlePageChange}
                 totalPages={Math.ceil(profileDetails.data.public_repos / totalReposPerPage)}

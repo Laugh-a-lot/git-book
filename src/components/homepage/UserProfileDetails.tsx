@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "../../../styles/UserProfileStyles.module.css";
 import Image from "next/image";
 import { GoLocation } from "react-icons/go";
 import { BsLink } from "react-icons/bs";
+import { MyCtx } from "../../contexts";
+import { useRouter } from "next/router";
 
 type Props = {
     profileDetails: {
@@ -19,6 +21,13 @@ type Props = {
 
 function UserProfileDetails({ profileDetails }: Props) {
     const { data } = profileDetails;
+    const { logoutUser } = useContext(MyCtx);
+    const router = useRouter();
+    const handleLogoutUser = () => {
+        logoutUser();
+        localStorage.clear();
+        router.push("/log-username");
+    };
     return (
         <div className={styles.container}>
             <Image
@@ -46,8 +55,11 @@ function UserProfileDetails({ profileDetails }: Props) {
                     </p>
                 )}
             </div>
+            <button className={styles.logoutBtn} onClick={handleLogoutUser}>
+                Check Another User
+            </button>
             <a href={data.html_url} className={styles.link}>
-                <BsLink /> {data.html_url}{" "}
+                <BsLink /> {data.html_url}
             </a>
         </div>
     );

@@ -1,14 +1,13 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/router";
 import { MyCtx } from "../contexts";
-import Loader from "./Loader";
-
+import Loader from "../utils/Loader";
 type Props = {
     children: React.ReactNode;
 };
 const PrivateRoute = ({ children }: Props) => {
     const router = useRouter();
-    const { state} = useContext(MyCtx);
+    const { state } = useContext(MyCtx);
 
     useEffect(() => {
         if (!state?.isLoggedIn && router.asPath !== "/log-username") {
@@ -19,8 +18,22 @@ const PrivateRoute = ({ children }: Props) => {
             }
         }
     }, []);
-    console.log(state);
-    if (!state?.isLoggedIn && router.asPath !== "/log-username") return <Loader />;
+    if (!state?.isLoggedIn && router.asPath !== "/log-username")
+        return (
+            <div
+                style={{
+                    display: "flex",
+                    alignItems: "center",
+                    height: "100vh",
+                    width: "100%",
+                    justifyContent: "center",
+                }}
+            >
+                <Loader />
+                Loading...
+            </div>
+        );
+
     return <>{children}</>;
 };
 

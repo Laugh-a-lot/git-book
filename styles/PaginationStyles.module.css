@@ -1,4 +1,4 @@
-.container{
+.container {
     width: 100%;
     padding: 20px;
     display: flex;
@@ -6,13 +6,24 @@
     gap: 10px;
     flex-wrap: wrap;
 }
-.btn{
+.btn {
     padding: 5px;
     width: 40px;
     border-radius: 8px;
     border: none;
     height: 40px;
 }
-.activeBtn{
+.btn:hover , .buttonLarge:hover{
     background-color: #58a6ff;
+}
+.activeBtn {
+    background-color: #58a6ff;
+    background-color: #58a6ff;
+}
+.buttonLarge {
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    border: none;
+    padding: 10px 16px;
 }

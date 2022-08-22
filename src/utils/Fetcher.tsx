@@ -4,9 +4,16 @@ const octokit = new Octokit({
 });
 
 const Fetcher = async (path: string, method: string = "GET", configs: object = {}) => {
-    const response = await octokit.request(`${method} /${path}`, {...configs});
-    const { status, data } = response;
-    return { data, status };
+    try {
+        const response = await octokit.request(`${method} /${path}`, { ...configs });
+        const { status, data } = response;
+        return { data, status };
+    } catch (err) {
+        console.error(err);
+        let data = {};
+        let status = 404;
+        return { data, status };
+    }
 };
 
 export default Fetcher;

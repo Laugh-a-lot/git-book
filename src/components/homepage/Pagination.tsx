@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import styles from "../../../styles/PaginationStyles.module.css";
+import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 type Props = {
     handlePageChange: (pageNumber: Number) => void;
     totalPages: number;
 };
 
-function Pagination({ handlePageChange, totalPages }: Props) {
+function Pagination({ handlePageChange, totalPages}: Props) {
     const [currentPage, setCurrentPage] = useState(1);
 
     return (
@@ -63,9 +64,30 @@ function Pagination({ handlePageChange, totalPages }: Props) {
                 </button>
             )}
 
-        <div style={{ flexBasis: "100%", display:"flex", justifyContent: "space-around" }}>
-                <button>Older </button>
-                <button>Newer</button>
+            <div style={{ flexBasis: "100%", display: "flex", justifyContent: "space-around" }}>
+                <button
+                    disabled={currentPage == 1}
+                    onClick={() => {
+                        setCurrentPage(1);
+                        handlePageChange(1);
+                    }}
+                    className={styles.buttonLarge}
+                    style={{}}
+                >
+                    <AiOutlineLeft /> &nbsp;Older
+                </button>
+                <button
+                    disabled={currentPage == totalPages}
+                    onClick={() => {
+                        setCurrentPage(totalPages);
+                        handlePageChange(totalPages);
+                    }}
+                    className={styles.buttonLarge}
+                    style={{ width: "auto" }}
+                >
+                    Newer &nbsp;
+                    <AiOutlineRight />
+                </button>
             </div>
         </div>
     );
