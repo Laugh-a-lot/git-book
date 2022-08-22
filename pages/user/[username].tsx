@@ -34,7 +34,7 @@ const UserDetails = ({ profileDetails, repoDetails }: Props) => {
         setLoading(true);
         const repoDetails = await Fetcher(`users/${state?.userName}/repos`, "GET", { per_page: totalReposPerPage, page });
         if (repoDetails.status === 200) {
-            showSnackbar("success", "Page Changed Successfully!")
+            showSnackbar("success", "Page Changed Successfully!", 5000)
         }
         setRepoList(repoDetails?.data);
         setLoading(false);
